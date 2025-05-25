@@ -1,0 +1,13 @@
+{
+  "name": "e-commerce-zidio",
+  "version": "1.0.0",
+  "description": "E-commerce application with login functionality",
+  "scripts": {
+    "start": "cd login-page && npm start",
+    "build": "cd login-page && npm build",
+    "test": "cd login-page && npm test"
+  },
+  "devDependencies": {
+    "postcss-import": "^16.1.0"
+  }
+}

@@ -1,0 +1,534 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Profile Setup Styles */
+.profile-setup {
+  background-color: rgba(8, 8, 32, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 20px rgba(98, 0, 255, 0.4);
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  color: white;
+}
+
+.profile-setup .heading-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-setup .subtitle {
+  color: #a9a9ff;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  font-family: inherit;
+  font-weight: normal;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.avatar-selection {
+  margin-top: 1rem;
+}
+
+.avatar-selection label {
+  display: block;
+  margin-bottom: 0.8rem;
+  font-weight: bold;
+  color: #d8d8ff;
+}
+
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.avatar-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  background-color: rgba(20, 20, 60, 0.4);
+  border: 2px solid transparent;
+}
+
+.avatar-option:hover {
+  background-color: rgba(30, 30, 80, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 255, 0.2);
+}
+
+.avatar-option.selected {
+  border-color: #9370db;
+  background-color: rgba(60, 60, 120, 0.6);
+  box-shadow: 0 0 15px rgba(147, 112, 219, 0.5);
+}
+
+.avatar-option img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.avatar-option.selected img {
+  border-color: #9370db;
+  transform: scale(1.05);
+}
+
+.avatar-option span {
+  font-size: 0.85rem;
+  text-align: center;
+  color: #d8d8ff;
+}
+
+/* Animation for profile setup */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* Profile Content Styles */
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.profile-avatar {
+  margin-bottom: 1.5rem;
+}
+
+.profile-details {
+  width: 100%;
+  background-color: rgba(30, 30, 70, 0.4);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-family: inherit;
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.profile-details strong {
+  color: #a9a9ff;
+  margin-right: 0.5rem;
+  font-family: inherit;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Animation for profile update */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 112, 219, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 112, 219, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 112, 219, 0);
+  }
+}
+
+.avatar-image {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.avatar-option:hover .avatar-image::after {
+  left: 100%;
+}
+
+.profile-avatar .avatar-image {
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.superman-avatar {
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 128, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.6) !important;
+}
+
+.superman-avatar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.1) 100%);
+  z-index: 1;
+}
+
+.profile-avatar .superman-avatar {
+  animation: supermanPulse 3s infinite !important;
+}
+
+@keyframes supermanPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 102, 255, 0), inset 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 255, 0), inset 0 0 10px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Superhero Avatar Image Styles */
+.avatar-image-container {
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+/* General avatar image styles */
+.avatar-image-container img {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.avatar-image-container img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.profile-avatar img {
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  animation: profileImagePulse 3s infinite;
+}
+
+/* Superman specific styles */
+.superman-avatar-img {
+  border-color: rgba(0, 102, 255, 0.6) !important;
+  box-shadow: 0 0 15px rgba(0, 102, 255, 0.7) !important;
+}
+
+.superman-avatar-img:hover {
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.9) !important;
+}
+
+.profile-avatar .superman-avatar-img {
+  border-color: rgba(0, 102, 255, 0.7) !important;
+  box-shadow: 0 0 25px rgba(0, 102, 255, 0.8) !important;
+  animation: supermanImagePulse 3s infinite !important;
+}
+
+@keyframes supermanImagePulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.7);
+  }
+}
+
+/* Batman specific styles */
+.batman-avatar-img {
+  border-color: rgba(50, 50, 50, 0.8) !important;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) !important;
+}
+
+.batman-avatar-img:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) !important;
+}
+
+.profile-avatar .batman-avatar-img {
+  border-color: rgba(50, 50, 50, 0.9) !important;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.9) !important;
+  animation: batmanImagePulse 3s infinite !important;
+}
+
+@keyframes batmanImagePulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Wonder Woman specific styles */
+.wonder-woman-avatar-img {
+  border-color: rgba(204, 0, 0, 0.8) !important;
+  box-shadow: 0 0 15px rgba(204, 0, 0, 0.7) !important;
+  border-width: 3px !important;
+}
+
+.wonder-woman-avatar-img:hover {
+  box-shadow: 0 0 25px rgba(204, 0, 0, 0.9) !important;
+  transform: scale(1.08) !important;
+}
+
+.profile-avatar .wonder-woman-avatar-img {
+  border-color: rgba(204, 0, 0, 0.8) !important;
+  box-shadow: 0 0 25px rgba(204, 0, 0, 0.8) !important;
+  animation: wonderWomanImagePulse 2s infinite !important;
+}
+
+@keyframes wonderWomanImagePulse {
+  0% {
+    box-shadow: 0 0 15px rgba(204, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(204, 0, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(204, 0, 0, 0.7);
+  }
+}
+
+/* Iron Man specific styles */
+.iron-man-avatar-img {
+  border-color: rgba(255, 204, 0, 0.6) !important;
+  box-shadow: 0 0 15px rgba(255, 153, 0, 0.7) !important;
+}
+
+.iron-man-avatar-img:hover {
+  box-shadow: 0 0 20px rgba(255, 153, 0, 0.9) !important;
+}
+
+.profile-avatar .iron-man-avatar-img {
+  border-color: rgba(255, 204, 0, 0.7) !important;
+  box-shadow: 0 0 25px rgba(255, 153, 0, 0.8) !important;
+  animation: ironManImagePulse 3s infinite !important;
+}
+
+@keyframes ironManImagePulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 153, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.7);
+  }
+}
+
+/* Animation for profile image update */
+@keyframes profileImagePulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Black Panther specific styles - updated for better visibility */
+.black-panther-avatar-img {
+  border-color: rgba(102, 51, 153, 0.8) !important;
+  box-shadow: 0 0 15px rgba(102, 51, 153, 0.8) !important;
+  border-width: 3px !important;
+}
+
+.black-panther-avatar-img:hover {
+  box-shadow: 0 0 25px rgba(102, 51, 153, 1) !important;
+  transform: scale(1.08) !important;
+}
+
+.profile-avatar .black-panther-avatar-img {
+  border-color: rgba(102, 51, 153, 0.9) !important;
+  box-shadow: 0 0 25px rgba(102, 51, 153, 0.9) !important;
+  animation: blackPantherImagePulse 2s infinite !important;
+}
+
+@keyframes blackPantherImagePulse {
+  0% {
+    box-shadow: 0 0 15px rgba(102, 51, 153, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(102, 51, 153, 1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(102, 51, 153, 0.8);
+  }
+}
+
+/* Redirect Page Styles */
+.redirect-message {
+  background-color: rgba(8, 8, 32, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2), 0 0 20px rgba(98, 0, 255, 0.4);
+  padding: 3rem 2rem;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.redirect-message h2 {
+  font-size: 1.8rem;
+  margin: 0;
+  background: linear-gradient(90deg, #4285f4, #ea4335, #fbbc05, #34a853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+}
+
+.redirect-message p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.redirect-message .note {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: #6a11cb;
+  border-left-color: #2575fc;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Custom Cursor */
+body {
+  /* Apply custom cursor to entire site */
+  cursor: url('./assets/avatars/too681.cur'), auto;
+}
+
+/* Apply to all interactive elements */
+button, a, input, select, textarea, 
+.avatar-option, .button, .toggle-button, 
+.google-button, .fallback-avatar, 
+.profile-avatar {
+  /* Use the same custom cursor */
+  cursor: url('./assets/avatars/too681.cur'), auto;
+}
+
+/* Make sure form elements are properly clickable when focused */
+input:focus, select:focus, textarea:focus {
+  cursor: text !important;
+}
